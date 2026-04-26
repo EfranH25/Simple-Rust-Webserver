@@ -20,10 +20,11 @@ impl Worker {
         let thread = thread::spawn(move || {
             loop {
                 let job = receiver.lock().unwrap().recv().unwrap();
-                print!("Worker {id} got a job; executing.");
+                println!("Worker {id} got a job; executing.");
                 job();
             }
         });
+
         Worker { id, thread }
     }
 }
